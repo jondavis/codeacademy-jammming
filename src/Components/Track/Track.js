@@ -3,11 +3,27 @@ import './Track.css';
 
 
 class Track extends React.Component {
-	// Create a method called renderAction that displays a - anchor tag if the isRemoval property is true, and a + anchor tag if the isRemoval property is false. Set the class name to Track-action.
-	// renderAction(){
-		
-	// }
+	constructor(props) {
+		super(props);
+		this.addTrack = this.addTrack.bind(this);
+		this.removeTrack = this.removeTrack.bind(this);
+	}
+	
+	renderAction(isRemoval){
+		if (isRemoval === true) {
+			return <a className="Track-action" onClick={this.removeTrack}>-</a>
+		} else  {
+			return <a className="Track-action" onClick={this.addTrack}>+</a>
+		}
+	}
+	addTrack() {
+		this.props.onAdd(this.props.track);
+	}
+	removeTrack(){
+		this.props.onRemove(this.props.track);
+	}
 	render() {
+		console.log('Track this.props: ', this.props);
 		return (
 			<div className="Track">
 				<div className="Track-information">
@@ -16,13 +32,11 @@ class Track extends React.Component {
 					</h3>
 					<p>
 						{this.props.track.artist}
-						 | 
+						&nbsp;|&nbsp; 
 						{this.props.track.album}
 					</p>
 				</div>
-				<a className="Track-action">
-					{/* <!-- + or - will go here --> */}
-				</a>
+				{this.renderAction(this.props.isRemoval)}
 			</div>
 		)
 	}
