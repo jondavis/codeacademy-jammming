@@ -13,7 +13,7 @@ class Playlist extends React.Component {
 		this.props.onNameChange(newName);
 	}
 	render() {
-		console.log('Playlist this.props: ', this.props);
+		//console.log('Playlist this.props: ', this.props);
 		return (
 			<div className="Playlist">
 				<input defaultValue={this.props.playlistName} onChange={this.handleNameChange}/>

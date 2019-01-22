@@ -23,7 +23,7 @@ class Track extends React.Component {
 		this.props.onRemove(this.props.track);
 	}
 	render() {
-		console.log('Track this.props: ', this.props);
+		//console.log('Track this.props: ', this.props);
 		return (
 			<div className="Track">
 				<div className="Track-information">
