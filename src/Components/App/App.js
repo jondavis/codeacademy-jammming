@@ -59,6 +59,7 @@ class App extends Component {
     this.setState({playlistName: name});
   }
   savePlaylist(){
+    //Spotify.getAccessToken();
     const uriList = this.state.playlistTracks.map(track => track.uri);
     // console.log('uriList: ');
     // console.log(uriList);
@@ -70,6 +71,7 @@ class App extends Component {
   }
   search(term){
     console.log('term: ' + term);
+    //Spotify.getAccessToken();
     Spotify.search(term).then(items => this.setState({
       searchResults: items
     }));
