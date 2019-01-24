@@ -13,22 +13,6 @@ class App extends Component {
       searchResults: [],
       playlistName: "New Playlist",
       playlistTracks: []
-      /*
-      playlistTracks: [
-        {
-          name: 'Thousands Are Sailing',
-          artist: 'The Pogues',
-          album: 'If I Should Fall From Grace With God',
-          id: '99997'
-        },
-        {
-          name: 'Dangerous Type',
-          artist: 'The Cars',
-          album: 'Candy-O',
-          id: '99996'
-        },
-      ]
-      */
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -37,45 +21,42 @@ class App extends Component {
     this.search = this.search.bind(this);
   }
   addTrack(track) {
-    console.log('addTrack running');
+    // console.log('addTrack running');
     if (this.state.playlistTracks.find(addedTrack => addedTrack.id === track.id)) {
       console.log('addTrack found a match');
       return;
     } else {
-      console.log('addTrack did NOT find a match');
+      // console.log('addTrack did NOT find a match');
       this.state.playlistTracks.push(track);
       this.setState({ playlistTracks: this.state.playlistTracks})
-      console.log('playlistTracks: ');
-      console.log(this.state.playlistTracks);
+      // console.log('playlistTracks: ');
+      // console.log(this.state.playlistTracks);
     }
   }
   removeTrack(track) {
     const newPlaylistTracks = this.state.playlistTracks.filter(removedTrack => removedTrack.id !== track.id);
     this.setState({playlistTracks: newPlaylistTracks})
-    console.log('newPlaylistTracks: ');
-    console.log(newPlaylistTracks);
+    // console.log('newPlaylistTracks: ');
+    // console.log(newPlaylistTracks);
   }
   updatePlaylistName(name) {
     this.setState({playlistName: name});
   }
   savePlaylist(){
     const uriList = this.state.playlistTracks.map(track => track.uri);
-    // console.log('uriList: ');
-    // console.log(uriList);
-    Spotify.savePlaylist(this.state.playlistName, uriList);
-    console.log("Spotify.savePlaylist has run");
-    this.setState({ playlistName: 'New Playlist' });
-    this.setState({ playlistTracks: []});
-    // this.setState({ 
-    //   playlistName: 'New Playlist',
-    //   playlistTracks: []
-    // });
-    console.log("playlistName and playlistTracks reset");
-    console.log(this.state.playlistName);
-    console.log(this.state.playlistTracks);
+
+    Spotify.savePlaylist(this.state.playlistName, uriList)
+      .then(() => this.setState({
+        playlistTracks: [],
+        playlistName: 'New Playlist'
+      }));
+    // console.log("Spotify.savePlaylist has run");
+    // console.log("playlistName and playlistTracks reset");
+    // console.log(this.state.playlistName);
+    // console.log(this.state.playlistTracks);
   }
   search(term){
-    console.log('term: ' + term);
+    // console.log('term: ' + term);
     Spotify.search(term).then(items => this.setState({
       searchResults: items
     }));
@@ -85,7 +66,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('App this.state:', this.state);
+    // console.log('App this.state:', this.state);
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
