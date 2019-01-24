@@ -64,10 +64,16 @@ class App extends Component {
     // console.log('uriList: ');
     // console.log(uriList);
     Spotify.savePlaylist(this.state.playlistName, uriList);
-    this.setState({ 
-      playlistName: 'New Playlist' ,
-      playlistTracks: []
-    });
+    console.log("Spotify.savePlaylist has run");
+    this.setState({ playlistName: 'New Playlist' });
+    this.setState({ playlistTracks: []});
+    // this.setState({ 
+    //   playlistName: 'New Playlist',
+    //   playlistTracks: []
+    // });
+    console.log("playlistName and playlistTracks reset");
+    console.log(this.state.playlistName);
+    console.log(this.state.playlistTracks);
   }
   search(term){
     console.log('term: ' + term);

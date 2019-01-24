@@ -27,10 +27,9 @@ const Spotify = {
 		let accessToken = this.getAccessToken();
 		console.log('Spotify.js search() accessToken: ' + accessToken);
 		let arg1 = `https://api.spotify.com/v1/search?type=track&q=${term}`;
-		let arg2 = {
-			headers: { Authorization: `Bearer ${accessToken}` } 
-		};
-		return fetch(arg1, {arg2})
+		return fetch(arg1, {
+			headers: { Authorization: `Bearer ${accessToken}` }
+		})
 			.then(response => response.json())
 			.then(jsonResponse => {
 				if (jsonResponse.tracks.items) {
@@ -54,15 +53,15 @@ const Spotify = {
 		}
 		let accessToken = this.getAccessToken();
 		console.log('Spotify.js savePlaylist accessToken: ' + accessToken);
-		const headersVar = {
-			Authorization: `Bearer ${accessToken}` 
-		};
+		// const headersVar = {
+		// 	Authorization: `Bearer ${accessToken}` 
+		// };
 		let userId;
 		let playlistID;
 		const userIdEndpoint = 'https://api.spotify.com/v1/me';
 		
 		fetch(userIdEndpoint, {
-			headers: headersVar
+			headers: { Authorization: `Bearer ${accessToken}` }
 		})
 			.then(response => response.json())
 			.then(jsonResponse => userId = jsonResponse.id)
@@ -71,7 +70,7 @@ const Spotify = {
 				const userPlaylistsEndpoint = `https://api.spotify.com/v1/users/${userId}/playlists`;
 				fetch(userPlaylistsEndpoint, {
 					method: 'POST',
-					headers: headersVar,
+					headers: { Authorization: `Bearer ${accessToken}` },
 					body: JSON.stringify({
 						name: playlistName
 					})
