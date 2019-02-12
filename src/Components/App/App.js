@@ -23,7 +23,7 @@ class App extends Component {
   addTrack(track) {
     // console.log('addTrack running');
     if (this.state.playlistTracks.find(addedTrack => addedTrack.id === track.id)) {
-      console.log('addTrack found a match');
+      // console.log('addTrack found a match');
       return;
     } else {
       // console.log('addTrack did NOT find a match');

@@ -7,7 +7,9 @@
   box-shadow: 0 4px 2px 2px #000000;
 }
 
-::-webkit-scrollbar {
+/* provided code below eliminated the scrollbar universally, requiring the user to scroll using up and down arrows. This is terrible UI, so I scoped it to the component itself */
+
+.SearchResults::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }

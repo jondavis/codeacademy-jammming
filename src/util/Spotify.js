@@ -5,6 +5,8 @@ const redirectURI = 'http://localhost:3000/';
 
 
 const Spotify = {
+
+	// Developer Note: I did not write this getAccessToken() function. Several students expressed frustration that nothing in the course curriculum covered the required functionality and left us all stuck on this step, unable to proceed. The course moderators agreed and provided this function as it appears here, verbatim.
 	getAccessToken() {
 		if (accessToken)
 			return accessToken;
