@@ -38,8 +38,15 @@ class App extends Component {
     this.setState({playlistTracks: newPlaylistTracks});
     if (this.state.searchResults.find(removedTrack => removedTrack.id === track.id)) {
       console.log('removeTrack found a match');
+      
       // need to do something with setState here to unhide
-      console.log(this.state.searchResults);
+      //console.log(this.state.searchResults);
+      this.state.searchResults.find(item => {
+        //console.log(item);
+      })
+      this.setState({
+        //searchResults: this.state.searchResults
+      })
 
       return;
     }

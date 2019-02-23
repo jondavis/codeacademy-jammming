@@ -16,12 +16,16 @@ class Track extends React.Component {
 	
 	handleAddClick(){
 		this.addTrack();
-		this.state.isHidden = !this.state.isHidden
+		this.setState({
+			isHidden: !this.state.isHidden
+		});
+		console.log('handleAddClick this:');
 		console.log(this);
 	}
 
 	handleRemoveClick(){
 		this.removeTrack();
+		console.log('handleRemoveClick this:');
 		console.log(this);
 	}
 
