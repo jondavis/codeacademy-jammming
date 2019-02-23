@@ -10,19 +10,19 @@ class Track extends React.Component {
 		this.handleAddClick = this.handleAddClick.bind(this);
 		this.handleRemoveClick = this.handleRemoveClick.bind(this);
 		this.state = {
-			isHidden: false
+			//isHidden: false
 		}
 	}
 	
 	handleAddClick(){
 		this.addTrack();
-		this.setState({
-			isHidden: !this.state.isHidden
-		})
+		this.state.isHidden = !this.state.isHidden
+		console.log(this);
 	}
 
 	handleRemoveClick(){
 		this.removeTrack();
+		console.log(this);
 	}
 
 	renderAction(isRemoval){
@@ -32,6 +32,15 @@ class Track extends React.Component {
 			return <a className="Track-action" onClick={this.handleAddClick}>+</a>
 		}
 	}
+
+	renderHidden(isHidden) {
+		if (isHidden === true) {
+			return 'hide'
+		} else {
+			return ''
+		}
+	}
+
 	addTrack() {
 		this.props.onAdd(this.props.track);
 	}
@@ -40,9 +49,9 @@ class Track extends React.Component {
 	}
 	render() {
 		//console.log('Track this.props: ', this.props);
-		const {isHidden} = this.state;
+		//const {isHidden} = this.state;
 		return (
-			<div className={`Track ${isHidden ? 'hide' : ''} `}>
+			<div className={`Track ${this.renderHidden(this.state.isHidden)} `}>
 				<div className="Track-information">
 					<h3>
 						{this.props.track.name}
