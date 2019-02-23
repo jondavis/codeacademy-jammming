@@ -35,7 +35,12 @@ class App extends Component {
   }
   removeTrack(track) {
     const newPlaylistTracks = this.state.playlistTracks.filter(removedTrack => removedTrack.id !== track.id);
-    this.setState({playlistTracks: newPlaylistTracks})
+    this.setState({playlistTracks: newPlaylistTracks});
+    if (this.state.searchResults.find(removedTrack => removedTrack.id === track.id)) {
+      console.log('removeTrack found a match');
+      // need to do something with setState here to unhide
+      return;
+    }
     // console.log('newPlaylistTracks: ');
     // console.log(newPlaylistTracks);
   }
