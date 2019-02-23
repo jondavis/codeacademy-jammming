@@ -19,6 +19,7 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    this.unHide = this.unHide.bind(this);
   }
   addTrack(track) {
     // console.log('addTrack running');
@@ -33,16 +34,30 @@ class App extends Component {
       // console.log(this.state.playlistTracks);
     }
   }
+
+  unHide(track) {
+    console.log('unhide: ');
+    console.log(track);
+    this.refs.track.setState({
+      isHidden: false
+    })
+    console.log('this.state.searchResults after unHide setState: ')
+    console.log(this.state.searchResults);
+  }
+
   removeTrack(track) {
     const newPlaylistTracks = this.state.playlistTracks.filter(removedTrack => removedTrack.id !== track.id);
     this.setState({playlistTracks: newPlaylistTracks});
     if (this.state.searchResults.find(removedTrack => removedTrack.id === track.id)) {
       console.log('removeTrack found a match');
+      console.log('track.id: ');
+      console.log(track.id);
+      this.unHide(track.id);
       
       // need to do something with setState here to unhide
       //console.log(this.state.searchResults);
       this.state.searchResults.find(item => {
-        //console.log(item);
+        //console.log(item.id);
       })
       this.setState({
         //searchResults: this.state.searchResults
@@ -87,7 +102,7 @@ class App extends Component {
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} onUnhide={this.unHide} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
           </div>
         </div>

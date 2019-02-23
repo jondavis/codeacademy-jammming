@@ -10,7 +10,7 @@ class Track extends React.Component {
 		this.handleAddClick = this.handleAddClick.bind(this);
 		this.handleRemoveClick = this.handleRemoveClick.bind(this);
 		this.state = {
-			//isHidden: false
+			isHidden: false
 		}
 	}
 	
@@ -21,6 +21,8 @@ class Track extends React.Component {
 		});
 		console.log('handleAddClick this:');
 		console.log(this);
+		console.log('handleAddClick this.props.track.id:');
+		console.log(this.props.track.id);
 	}
 
 	handleRemoveClick(){
@@ -50,6 +52,9 @@ class Track extends React.Component {
 	}
 	removeTrack(){
 		this.props.onRemove(this.props.track);
+	}
+	unhideTrack(){
+		this.props.onUnhide(this.props.track);
 	}
 	render() {
 		//console.log('Track this.props: ', this.props);
