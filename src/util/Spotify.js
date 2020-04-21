@@ -1,7 +1,7 @@
 let accessToken;
 let expiresIn;
 const clientID = '4a0dfddd24344aad887c6a28d8d7ff3a';
-const redirectURI = "http://jondavis-jammming.surge.sh/";
+const redirectURI = 'http://localhost:3000/';
 
 
 const Spotify = {
